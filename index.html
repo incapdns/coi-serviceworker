@@ -26,6 +26,7 @@
           console.log('Received from worker:', e.data);
         };
 
+        myWorker.port.onerror = err => console.error('worker', err);
         
         const el = document.createElement("div")
         el.innerHTML = `Cross origin isolated: ${window.crossOriginIsolated ? "✅" : "❌"}`
