@@ -6,7 +6,31 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <title>COI</title>
-    <script src="./coi-serviceworker.js"></script>
+    <script>
+    const registerServiceWorker = async () => {
+      if ('serviceWorker' in navigator) {
+        try {
+          // Optional: scope defines which sub-paths the worker controls (default is '/')
+          const registration = await navigator.serviceWorker.register('/sw.js', {
+            scope: '/'
+          });
+    
+          if (registration.installing) {
+            console.log('Service worker installing');
+          } else if (registration.waiting) {
+            console.log('Service worker installed/waiting');
+          } else if (registration.active) {
+            console.log('Service worker active');
+          }
+    
+        } catch (error) {
+          console.error(`Registration failed: ${error}`);
+        }
+      }
+    };
+    
+    registerServiceWorker();
+    </script>
 </head>
 
 <body>
