@@ -11,23 +11,21 @@
 
 <body>
     <h1>coi-serviceworker</h1>
-    
-    <script>
-        const myWorker = new SharedWorker('worker.js');
-        
+
+    <script type="module">
+        const worker = new SharedWorker(new URL('./worker.js', import.meta.url));
         // 2. Start the port (required if using addEventListener)
         myWorker.port.start();
-        
         // 3. Send a message to the worker
         myWorker.port.postMessage("Hello from a tab!");
-        
         // 4. Listen for messages from the worker
         myWorker.port.onmessage = function(e) {
           console.log('Received from worker:', e.data);
         };
-
         myWorker.port.onerror = err => console.error('worker', err);
-        
+    </script>
+    
+    <script>
         const el = document.createElement("div")
         el.innerHTML = `Cross origin isolated: ${window.crossOriginIsolated ? "✅" : "❌"}`
         document.body.append(el);
