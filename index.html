@@ -37,7 +37,7 @@
     <h1>coi-serviceworker</h1>
 
     <script type="module">
-        const worker = new SharedWorker(new URL('./worker.js', import.meta.url));
+        const worker = new Worker(new URL('./worker.js', import.meta.url));
         // 2. Start the port (required if using addEventListener)
         worker.port.start();
         // 3. Send a message to the worker
