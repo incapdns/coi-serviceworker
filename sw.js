@@ -1,5 +1,6 @@
 // 1. Habilitar Navigation Preload no evento 'activate'
 self.addEventListener("activate", (event) => {
+  self.skipWaiting();
   event.waitUntil(
     (async () => {
       if (self.registration.navigationPreload) {
