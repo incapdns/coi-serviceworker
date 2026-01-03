@@ -12,7 +12,7 @@
         try {
           // Optional: scope defines which sub-paths the worker controls (default is '/')
           const registration = await navigator.serviceWorker.register('sw.js', {
-            scope: '/'
+            scope: '/coi-serviceworker'
           });
     
           if (registration.installing) {
