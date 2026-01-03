@@ -16,7 +16,7 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
 
   // Verifica se o destino é um dos que você especificou
-  if (["document", "iframe", "worker"].includes(request.destination)) {
+  if (["document", "iframe", "worker", "sharedworker"].includes(request.destination)) {
     event.respondWith(handleNetworkOnlyWithHeaders(event));
   }
 });
